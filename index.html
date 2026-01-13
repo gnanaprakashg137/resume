@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gnanaprakash_G_AI_Automation_Resume</title>
+<link rel="icon" href="https://gnanaprakashg137.github.io/portfolio/favicon-16x16.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<meta name="theme-color" content="#2563eb">
+<style>
+/* ===== PAGE BACKGROUND ===== */
+body {
+  margin: 0;
+  background: #d9d9d9;
+  font-family: "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #000;
+}
+
+/* ===== WRAPPER ===== */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px;
+}
+
+/* ===== A4 PAGE ===== */
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  padding: 18mm;
+  box-shadow: 0 0 18px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+  transform-origin: top center;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1 { font-size: 22.5px; font-weight: 700; margin: 0 0 4px; }
+h2 { font-size: 15px; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #000; padding-bottom: 2px; }
+h3 { font-size: 13.5px; font-weight: 600; margin: 2px 0; }
+h4 { font-size: 12.5px; font-weight: 600; margin: 8px 0 4px; }
+p { margin: 4px 0; font-size: 12.5px; }
+ul { margin: 3px 0 4px 16px; padding: 0; }
+li { font-size: 12.5px; margin-bottom: 3px; }
+a { text-decoration: none; color: #1a0dab; }
+
+/* ===== HEADER ===== */
+.header { display: flex; justify-content: space-between; align-items: flex-start; }
+.header-left { max-width: 78%; }
+
+/* ===== QR ===== */
+#qrcode { width: 80px; height: 80px; }
+
+/* ===== CONTACT ===== */
+.contact { font-size: 11.5px; line-height: 1.4; }
+
+/* ===== DOWNLOAD BUTTON ===== */
+.actions {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+.actions:hover { transform: translateX(-50%) scale(1.05); box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
+.actions button {
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+/* ===== MOBILE SCALE ===== */
+@media (max-width: 900px) { .a4-page { transform: scale(0.9); } }
+@media (max-width: 700px) { .a4-page { transform: scale(0.75); } }
+@media (max-width: 500px) { .a4-page { transform: scale(0.6); } }
+
+/* ===== PRINT ===== */
+@media print {
+  #qrcode { display: none; }
+  .actions { display: none !important; }
+  body { background: #fff; }
+  .wrapper { padding: 0; }
+  .a4-page {
+    transform: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 15mm;
+  }
+}
+
+/* ===== FORCE SINGLE A4 PAGE PRINT ===== */
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+  }
+
+  .a4-page {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 12mm !important;
+    transform: scale(0.92);
+    transform-origin: top left;
+  }
+}
+@media print {
+  #atom-loader {
+    display: none !important;
+  }
+}
+@media print {
+  h2 { page-break-after: avoid; }
+  ul, p { page-break-inside: avoid; }
+}
+
+/* ========== FULL SCREEN LOADER ========== */
+#atom-loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    #f8fafc 0%,
+    #f1f5f9 35%,
+    #caecfb 65%,
+    #98dcfa 85%,
+    #38bdf8 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* ========== ATOM CONTAINER ========== */
+.atom {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+/* ========== ORBITS (NO OUTSIDE BUG) ========== */
+.atom span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid #38bdf8;
+  animation: orbitSpin 2s linear infinite;
+  box-sizing: border-box;
+}
+
+/* Orbit 2 */
+.atom span:nth-child(2) {
+  transform: rotate(60deg);
+  border-top-color: #22d3ee; /* yellow */
+  animation-duration: 2.6s;
+}
+
+/* Orbit 3 */
+.atom span:nth-child(3) {
+  transform: rotate(120deg);
+  border-top-color: #a78bfa; /* yellow */
+  animation-duration: 3s;
+}
+
+/* ========== CENTER TEXT (PERFECT CENTER) ========== */
+.atom-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+/* MAIN TEXT */
+.atom-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #e80cad;
+}
+
+/* SUB TEXT */
+.atom-text small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #174ee4;
+  opacity: 0.9;
+}
+
+/* ========== LOADING TEXT ========== */
+#atom-loader p {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #0f172a;
+}
+
+/* ========== ANIMATION ========== */
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== FINAL PRINT FIX ===== */
+@media print {
+  .actions {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+</style>
+
+</head>
+
+
+<body>
+<div class="wrapper">
+<div class="a4-page">
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>GNANAPRAKASH G</h1>
+    <h3>Artificial Intelligence & Data Science Student | AI & Automation</h3>
+    <p>B.Tech – Artificial Intelligence & Data Science</p>
+
+    <div class="contact">
+      <p>
+        Phone: +91 7339316684 <br>
+        Email: gnanaprakashg1312@gmail.com
+      </p>
+      <p>
+        GitHub: github.com/gnanaprakashg137 <br>
+        LinkedIn: linkedin.com/in/gnanaprakash-g-131706g
+      </p>
+    </div>
+  </div>
+
+  <div> <div id="qrcode"></div> </div>
+
+</div>
+
+<!-- CAREER OBJECTIVE -->
+<h2>Career Objective</h2>
+<p>
+Entry-level Artificial Intelligence and Data Science student with hands-on experience in Python automation, data analysis, and workflow automation. Seeking internship or junior-level opportunities in AI, Automation, or AIOps where Python scripting, data processing, and AI fundamentals can be applied to real-world systems.
+</p>
+
+<!-- EDUCATION -->
+<h2>Education</h2>
+<p>
+<strong>B.Tech – Artificial Intelligence & Data Science</strong><br>
+Asian College of Engineering and Technology, Coimbatore<br>
+Expected Graduation: 2028
+</p>
+
+<!-- TECHNICAL SKILLS -->
+<h2>Technical Skills</h2>
+
+<h4>Programming Languages</h4>
+<ul>
+  <li>Python (Automation, Scripting, Data Processing)</li>
+</ul>
+
+<h4>Automation & Tools</h4>
+<ul>
+  <li>Python Automation Scripts</li>
+  <li>Zapier Workflow Automation</li>
+  <li>Gmail Automation</li>
+  <li>Google Forms Automation</li>
+</ul>
+
+<h4>AI & Data Science</h4>
+<ul>
+  <li>Machine Learning Fundamentals</li>
+  <li>Data Analysis using Pandas</li>
+  <li>Data Visualization using Matplotlib</li>
+  <li>Natural Language Processing (Basics)</li>
+</ul>
+
+<h4>Development Tools</h4>
+<ul>
+  <li>Git, GitHub</li>
+  <li>HTML, CSS</li>
+  <li>Visual Studio Code</li>
+</ul>
+
+<!-- Practical Exposure -->
+<h2>Practical Exposure</h2>
+<ul>
+  <li>Developed Python automation scripts to automate repetitive tasks such as email handling and form data processing.</li>
+  <li>Performed data analysis using Pandas to clean, analyze, and visualize datasets.</li>
+  <li>Implemented basic machine learning concepts through practice projects and exercises.</li>
+  <li>Built workflow automations using Zapier by integrating Google Forms and Gmail.</li>
+</ul>
+
+<!-- KEYWORDS -->
+<h2>Keywords Summary</h2>
+<p>
+Python, Automation, Artificial Intelligence, Data Science, AIOps, Machine Learning, Data Analysis, Pandas, Workflow Automation, GitHub
+</p>
+
+<!-- DECLARATION -->
+<h2>Declaration</h2>
+<p>
+I hereby declare that the above information is true and correct to the best of my knowledge.
+</p>
+
+</div>
+</div>
+
+<!-- Download Button -->
+<div class="actions">
+  <button aria-label="Download Resume" onclick="window.print()">⬇️ Download Resume (PDF)</button>
+</div>
+
+<script>
+new QRCode(document.getElementById("qrcode"), {
+  text: "https://gnanaprakashg137.github.io/portfolio/",
+  width: 80,
+  height: 80
+});
+
+// Scroll show/hide button
+const actionsBtn = document.querySelector(".actions");
+
+// Always show in PWA / Mobile
+if (window.matchMedia("(display-mode: standalone)").matches || window.innerWidth < 900) {
+  actionsBtn.style.display = "block";
+} else {
+  window.addEventListener("scroll", () => {
+    actionsBtn.style.display = window.scrollY > 100 ? "block" : "none";
+  });
+}
+</script>
+
+<!---------Hide Code---------------->
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("keydown", e => {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.key.toLowerCase() === "u") ||
+    (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(e.key.toLowerCase()))
+  ) {
+    e.preventDefault();
+  }
+});
+</script>
+
+<script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("atom-loader");
+
+  setTimeout(() => {
+    loader.style.transition = "opacity 0.s ease";
+    loader.style.opacity = "0";
+
+    setTimeout(() => loader.remove(), 700);
+  }, 1400);
+});
+</script>
+
+</body>
+</html>
