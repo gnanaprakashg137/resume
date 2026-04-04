@@ -249,9 +249,46 @@
       border-radius: 0;
     }
   }
+
+#loader{
+  position:fixed;inset:0;
+  background:#0d1117;
+  z-index:99999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  transition:opacity .6s,visibility .6s;
+}
+#loader.gone{opacity:0;visibility:hidden}
+.ld-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:60px}
+.ld-cell{width:16px;height:16px;border-radius:3px;background:#1e2a3a;animation:cellPulse 1.4s ease-in-out infinite}
+.ld-cell:nth-child(1){animation-delay:0s;background:#3b82f6}
+.ld-cell:nth-child(2){animation-delay:.1s;background:#06b6d4}
+.ld-cell:nth-child(3){animation-delay:.2s;background:#8b5cf6}
+.ld-cell:nth-child(4){animation-delay:.3s}
+.ld-cell:nth-child(5){animation-delay:.4s;background:#3b82f6}
+.ld-cell:nth-child(6){animation-delay:.5s}
+.ld-cell:nth-child(7){animation-delay:.6s;background:#8b5cf6}
+.ld-cell:nth-child(8){animation-delay:.7s}
+.ld-cell:nth-child(9){animation-delay:.8s;background:#06b6d4}
+@keyframes cellPulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+.ld-text{font-family:monospace;font-size: 1.1rem;color:#3b82f6;letter-spacing:.08em}
+.ld-bar{width:200px;height:2px;background:#1e2a3a;border-radius:1px;overflow:hidden}
+.ld-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4,#8b5cf6);animation:ldFill 1.4s ease forwards}
+@keyframes ldFill{from{width:0}to{width:100%}}
+
+
 </style>
 </head>
 <body>
+
+<div id="loader">
+  <div class="ld-grid">
+    <div class="ld-cell"></div><div class="ld-cell"></div><div class="ld-cell"></div>
+    <div class="ld-cell"></div><div class="ld-cell"></div><div class="ld-cell"></div>
+    <div class="ld-cell"></div><div class="ld-cell"></div><div class="ld-cell"></div>
+  </div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-text">Initializing Gnanaprakash Resume...</div>
+</div>
 
 <div class="action-bar">
   <button class="btn btn-print" onclick="window.print()">🖨️ Print Resume</button>
@@ -390,6 +427,14 @@
       bar.style.display = 'flex';
     });
   }
+
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    const l=document.getElementById("loader");
+    l.classList.add("gone");
+    setTimeout(()=>l.remove(),700);
+  },1600);
+});
 </script>
 </body>
 </html>
